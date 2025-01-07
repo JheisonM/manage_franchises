@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class FranchiseRepositoryAdapter implements FranchiseRepositoryPort {
@@ -26,11 +28,11 @@ public class FranchiseRepositoryAdapter implements FranchiseRepositoryPort {
 
     @Override
     public Mono<Franchise> findById(String id) {
-        return repository.findById(id);
+        return repository.findById(UUID.fromString(id));
     }
 
     @Override
     public Mono<Void> deleteById(String id) {
-        return repository.deleteById(id);
+        return repository.deleteById(UUID.fromString(id));
     }
 }

@@ -1,1 +1,12 @@
-spring.application.name=manage_franchises
+spring:
+  application:
+    name: manage_franchises
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+  datasource:
+    initialization-mode: always
+  sql:
+    init:
+      mode: always

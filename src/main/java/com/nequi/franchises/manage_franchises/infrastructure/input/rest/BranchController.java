@@ -49,4 +49,23 @@ public class BranchController {
     public Mono<BranchDTO> disableBranch(@PathVariable String id) {
         return branchService.disableBranch(id);
     }
+
+    @Operation(
+            summary = "Update branch name",
+            description = "Updates the name of an existing branch by its ID."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Branch name successfully updated"),
+            @ApiResponse(responseCode = "404", description = "Branch not found",
+                    content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "400", description = "Invalid branch name",
+                    content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json"))
+    })
+    @PatchMapping("/{id}/name")
+    public Mono<BranchDTO> updateBranchName(
+            @PathVariable String id,
+            @RequestBody BranchDTO branchDTO) {
+        return branchService.updateBranchName(id, branchDTO.getName());
+    }
+
 }

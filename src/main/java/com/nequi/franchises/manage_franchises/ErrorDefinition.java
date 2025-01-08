@@ -15,7 +15,8 @@ public enum ErrorDefinition {
     BRANCH_NAME_ALREADY_EXISTS("0002", "A branch with this name already exists"),
     PRODUCT_NOT_FOUND("0003", "Product not found"),
     INVALID_PRODUCT_STOCK("0004", "Invalid product stock quantity"),
-    INVALID_PRODUCT_NAME("0005", "Invalid product name");
+    INVALID_PRODUCT_NAME("0005", "Invalid product name"),
+    INVALID_BRANCH_NAME("0005", "Invalid branch name");
 
     private final String code;
     private final String message;

@@ -60,7 +60,7 @@ public class FranchiseController {
             @ApiResponse(responseCode = "400", description = "Invalid franchise data",
                     content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json"))
     })
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public Mono<FranchiseDTO> updateFranchiseName(@PathVariable String id, @RequestBody FranchiseDTO franchiseDTO) {
         return franchiseService.updateFranchiseName(id, franchiseDTO);
     }

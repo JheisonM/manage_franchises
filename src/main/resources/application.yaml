@@ -1,12 +1,9 @@
 spring:
   application:
     name: manage_franchises
+  profiles:
+    active: ${PROFILE:local}
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: admin
-  datasource:
-    initialization-mode: always
-  sql:
-    init:
-      mode: always
+    url: ${DB_URL:r2dbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}

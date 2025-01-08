@@ -1,4 +1,4 @@
-package com.nequi.franchises.manage_franchises.infrastructure.input.rest;
+package com.nequi.franchises.manage_franchises.infrastructure.input.rest.config;
 
 import com.nequi.franchises.manage_franchises.application.service.excepcion.*;
 import lombok.extern.slf4j.Slf4j;

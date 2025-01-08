@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.nequi.franchises</groupId>
 	<artifactId>manage_franchises</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>manage_franchises</name>
 	<description>is a reactive api to manage franchises</description>
 	<url/>

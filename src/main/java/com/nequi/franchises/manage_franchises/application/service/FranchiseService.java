@@ -2,6 +2,8 @@ package com.nequi.franchises.manage_franchises.application.service;
 
 import com.nequi.franchises.manage_franchises.application.dto.FranchiseDTO;
 import com.nequi.franchises.manage_franchises.application.output.port.FranchiseRepositoryPort;
+import com.nequi.franchises.manage_franchises.application.service.excepcion.FranchiseException;
+import com.nequi.franchises.manage_franchises.application.util.ValidatorUtil;
 import com.nequi.franchises.manage_franchises.domain.entity.Franchise;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,9 @@ public class FranchiseService {
     private final FranchiseRepositoryPort franchiseRepositoryPort;
 
     public Mono<FranchiseDTO> createFranchise(FranchiseDTO franchiseDTO) {
+
+        ValidatorUtil.validate(franchiseDTO);
+
         Franchise franchise = new Franchise();
         franchise.setName(franchiseDTO.getName());
 
@@ -31,6 +36,7 @@ public class FranchiseService {
 
     public Mono<FranchiseDTO> updateFranchiseName(String id, FranchiseDTO franchiseDTO) {
         return franchiseRepositoryPort.findById(id)
+                .switchIfEmpty(Mono.error(new FranchiseException.NotFound()))
                 .flatMap(existing -> {
                     existing.setName(franchiseDTO.getName());
                     return franchiseRepositoryPort.save(existing);
@@ -39,6 +45,8 @@ public class FranchiseService {
     }
 
     public Mono<Void> deleteFranchise(String id) {
-        return franchiseRepositoryPort.deleteById(id);
+        return franchiseRepositoryPort.findById(id)
+                .switchIfEmpty(Mono.error(new FranchiseException.NotFound()))
+                .flatMap(existing -> franchiseRepositoryPort.deleteById(id));
     }
 }

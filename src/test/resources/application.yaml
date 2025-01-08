@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: manage_franchises
+  profiles:
+    active: test
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin

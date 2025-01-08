@@ -1,1 +1,9 @@
-spring.application.name=manage_franchises
+spring:
+  application:
+    name: manage_franchises
+  profiles:
+    active: ${PROFILE:local}
+  r2dbc:
+    url: ${DB_URL:r2dbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}

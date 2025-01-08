@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,6 +41,7 @@ public class FranchiseService {
                 .switchIfEmpty(Mono.error(new FranchiseException.NotFound()))
                 .flatMap(existing -> {
                     existing.setName(franchiseDTO.getName());
+                    existing.setUpdatedAt(LocalDateTime.now());
                     return franchiseRepositoryPort.save(existing);
                 })
                 .map(updated -> new FranchiseDTO(updated.getId().toString(), updated.getName()));

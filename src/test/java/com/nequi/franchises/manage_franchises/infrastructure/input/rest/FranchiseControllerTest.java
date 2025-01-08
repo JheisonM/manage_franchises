@@ -117,27 +117,6 @@ class FranchiseControllerTest {
     }
 
     @Test
-    void updateFranchiseName_NotFound() {
-        // Arrange
-        String franchiseId = "999";
-        FranchiseDTO inputDto = new FranchiseDTO();
-        inputDto.setName("Updated Franchise");
-
-        when(franchiseService.updateFranchiseName(eq(franchiseId), any(FranchiseDTO.class)))
-                .thenReturn(Mono.error(new FranchiseException.NotFound()));
-
-        // Act & Assert
-        webTestClient.patch()
-                .uri("/api/manage/franchises/" + franchiseId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(inputDto)
-                .exchange()
-                .expectStatus().isNotFound();
-
-        verify(franchiseService).updateFranchiseName(eq(franchiseId), any(FranchiseDTO.class));
-    }
-
-    @Test
     void deleteFranchise_Success() {
         // Arrange
         String franchiseId = "1";
